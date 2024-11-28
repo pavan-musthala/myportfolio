@@ -1,6 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -12,8 +10,74 @@ interface ProjectCardProps {
     live: string;
     github: string;
   };
-  index: number;
 }
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, image, links }) => {
+  return (
+    <div className="group relative rounded-xl bg-gray-900/50 overflow-hidden border border-gray-800 
+                    transform transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl 
+                    hover:shadow-purple-500/10 hover:border-purple-500/20 flex flex-col">
+      <div className="relative w-full h-48 sm:h-64 overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover object-center transform transition-transform duration-500 
+                   group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80" />
+      </div>
+      
+      <div className="relative flex-1 p-4 sm:p-6 bg-gray-900/90 backdrop-blur-sm">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent
+                       transform transition-all duration-300 group-hover:scale-105">
+          {title}
+        </h3>
+        
+        <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 line-clamp-4">
+          {description}
+        </p>
+        
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+          {tools.map((tool) => (
+            <span
+              key={tool}
+              className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-gray-800/80 text-gray-300 backdrop-blur-sm
+                       border border-gray-700/50 shadow-sm"
+            >
+              {tool}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex gap-3 sm:gap-4 mt-auto">
+          {links.live && (
+            <a
+              href={links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:scale-110 
+                       transition-all duration-300 shadow-lg hover:shadow-purple-500/25 hover:from-purple-600 hover:to-blue-600"
+              aria-label="View Live Demo"
+            >
+              <ExternalLink size={18} strokeWidth={2.5} className="sm:w-5 sm:h-5" />
+            </a>
+          )}
+          <a
+            href={links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 sm:p-2.5 rounded-xl bg-white/5 text-white hover:scale-110 transition-all duration-300 
+                     shadow-lg hover:shadow-white/25 hover:bg-white/10 backdrop-blur-sm 
+                     border border-white/10 hover:border-white/20"
+            aria-label="View Source Code"
+          >
+            <Github size={18} strokeWidth={2} className="sm:w-5 sm:h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const projects = [
   {
@@ -81,119 +145,17 @@ const projects = [
   }
 ];
 
-const ProjectCard = React.memo(({ title, description, tools, image, links, index }: ProjectCardProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.3 }}
-      className="overflow-hidden rounded-lg bg-gradient-to-br from-gray-900/50 to-black/50 border border-gray-800/50 
-               backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 group w-full"
-    >
-      <div className="aspect-video w-full relative overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
-      <div className="p-4 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-bold mb-2 bg-gradient-to-r from-[#6a11cb] to-[#2575fc] bg-clip-text text-transparent">
-          {title}
-        </h3>
-        <p className="text-sm sm:text-base text-gray-300 mb-4 line-clamp-4 sm:line-clamp-none">
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {tools.map((tool, i) => (
-            <span
-              key={i}
-              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-gray-800/50 text-gray-300"
-            >
-              {tool}
-            </span>
-          ))}
-        </div>
-        <div className="flex gap-3">
-          {links.live && (
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href={links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-gradient-to-br from-gray-900/50 to-black/50 border border-gray-800/50
-                       shadow-[0_0_15px_rgba(106,17,203,0.1)] hover:shadow-[0_0_20px_rgba(106,17,203,0.2)]
-                       text-[#6a11cb] hover:text-[#2575fc] transition-all duration-300"
-              aria-label="Live Demo"
-            >
-              <ExternalLink className="w-5 h-5" />
-            </motion.a>
-          )}
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href={links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full bg-gradient-to-br from-gray-900/50 to-black/50 border border-gray-800/50
-                     shadow-[0_0_15px_rgba(106,17,203,0.1)] hover:shadow-[0_0_20px_rgba(106,17,203,0.2)]
-                     text-[#6a11cb] hover:text-[#2575fc] transition-all duration-300"
-            aria-label="View Code"
-          >
-            <Github className="w-5 h-5" />
-          </motion.a>
-        </div>
-      </div>
-    </motion.div>
-  );
-});
-
 const Projects = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: '50px 0px',
-    skip: typeof window === 'undefined'
-  });
-
-  const cardStyle = {
-    transform: `translateY(${inView ? '0' : '20px'})`,
-    opacity: inView ? 1 : 0,
-    transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
-  };
-
   return (
-    <section className="py-12 sm:py-20 px-4 bg-gradient-to-b from-gray-900/50 to-black" id="projects">
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text"
-        >
+    <section className="py-12 sm:py-20 px-4 min-h-screen bg-gradient-to-b from-black via-gray-900 to-black" id="projects">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16 bg-gradient-to-r from-purple-400 via-blue-500 to-purple-400 text-transparent bg-clip-text">
           Featured Projects
-        </motion.h2>
+        </h2>
 
-        <div 
-          ref={ref} 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 will-change-transform"
-          style={{ 
-            containIntrinsicSize: '0 500px',
-            contentVisibility: 'auto'
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-              <ProjectCard {...project} index={index} />
-            </motion.div>
+            <ProjectCard key={project.title} {...project} />
           ))}
         </div>
       </div>

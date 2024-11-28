@@ -38,7 +38,7 @@ const Skills = () => {
   });
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-gray-900/50 to-black">
+    <section id="skills" className="py-20">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -49,32 +49,43 @@ const Skills = () => {
           Skills & Technologies
         </motion.h2>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="p-6 rounded-xl bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-blue-500/50 transition-colors
-                 shadow-[0_0_15px_rgba(37,117,252,0.05)] hover:shadow-[0_0_20px_rgba(37,117,252,0.1)]"
+              className="group relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm
+                       border border-purple-500/10 hover:border-purple-500/30
+                       transform transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="flex items-center mb-4">
-                <category.icon className="w-8 h-8 text-purple-400 mr-2" />
-                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative p-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 rounded-xl bg-purple-500/10 backdrop-blur-sm border border-purple-500/20">
+                    <category.icon className="w-7 h-7 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-200 to-blue-200 
+                               bg-clip-text text-transparent">{category.title}</h3>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  {category.skills.map((skill, idx) => (
+                    <div
+                      key={skill}
+                      className="flex items-center gap-2 p-2 rounded-lg bg-purple-500/5 backdrop-blur-sm 
+                               border border-purple-500/10 hover:bg-purple-500/10 
+                               hover:border-purple-500/20 transition-all duration-300"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-400 to-blue-400" />
+                      <span className="text-gray-300 text-sm">{skill}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <ul className="space-y-2">
-                {category.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="text-gray-300 flex items-center"
-                  >
-                    <span className="px-3 py-1 bg-gray-900/50 text-blue-300 rounded-full text-sm 
-                     border border-gray-800 hover:border-blue-500/50 transition-colors"></span>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>
