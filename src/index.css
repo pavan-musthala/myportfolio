@@ -6,10 +6,16 @@
 
 @layer base {
   html {
+    background-color: #000000;
     scroll-behavior: smooth;
   }
   
   body {
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @apply bg-white;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -348,4 +354,9 @@
 
 .border-glow {
   box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+/* Prevent white flash during scrolling */
+html, body {
+  overscroll-behavior: none;
 }

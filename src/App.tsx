@@ -20,7 +20,7 @@ const LoadingSpinner = () => (
 
 const App = () => {
   return (
-    <main className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-black">
       {/* Sections with minimal gradient overlays */}
       <div className="relative z-10">
         <div className="relative bg-black">
@@ -52,7 +52,7 @@ const App = () => {
 
       {/* Particles overlay */}
       <ParticlesBackground />
-    </main>
+    </div>
   );
 };
 
