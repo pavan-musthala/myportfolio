@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo, useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 
 interface ProjectCardProps {
   title: string;
@@ -12,24 +13,42 @@ interface ProjectCardProps {
   };
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, image, links }) => {
+const ProjectCard = memo(({ title, description, tools, image, links }: ProjectCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true, // This ensures the callback only fires once
+    threshold: 0.1,
+  });
+
   return (
-    <div className="group relative rounded-xl bg-gray-900/50 overflow-hidden border border-gray-800 
-                    transform transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl 
-                    hover:shadow-purple-500/10 hover:border-purple-500/20 flex flex-col">
+    <div 
+      ref={ref}
+      className={`group relative rounded-xl bg-gray-900/50 overflow-hidden border border-gray-800 
+                 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl 
+                 hover:shadow-purple-500/10 hover:border-purple-500/20 
+                 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+    >
       <div className="relative w-full h-48 sm:h-64 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover object-center transform transition-transform duration-500 
-                   group-hover:scale-105"
-        />
+        {/* Show skeleton loader before image loads */}
+        <div className={`absolute inset-0 bg-gray-800 animate-pulse transition-opacity duration-300
+                      ${imageLoaded ? 'opacity-0' : 'opacity-100'}`} />
+        
+        {inView && (
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
+            className={`w-full h-full object-cover object-center transition-all duration-500 
+                     group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80" />
       </div>
       
       <div className="relative flex-1 p-4 sm:p-6 bg-gray-900/90 backdrop-blur-sm">
-        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent
-                       transform transition-all duration-300 group-hover:scale-105">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-purple-400 to-blue-500 
+                     bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105">
           {title}
         </h3>
         
@@ -41,8 +60,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, im
           {tools.map((tool) => (
             <span
               key={tool}
-              className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-gray-800/80 text-gray-300 backdrop-blur-sm
-                       border border-gray-700/50 shadow-sm"
+              className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-gray-800/80 text-gray-300 
+                       backdrop-blur-sm border border-gray-700/50 shadow-sm"
             >
               {tool}
             </span>
@@ -55,8 +74,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, im
               href={links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:scale-110 
-                       transition-all duration-300 shadow-lg hover:shadow-purple-500/25 hover:from-purple-600 hover:to-blue-600"
+              className="p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white 
+                       transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/25"
               aria-label="View Live Demo"
             >
               <ExternalLink size={18} strokeWidth={2.5} className="sm:w-5 sm:h-5" />
@@ -67,7 +86,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, im
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 sm:p-2.5 rounded-xl bg-white/5 text-white hover:scale-110 transition-all duration-300 
-                     shadow-lg hover:shadow-white/25 hover:bg-white/10 backdrop-blur-sm 
+                     hover:shadow-lg hover:shadow-white/25 hover:bg-white/10 backdrop-blur-sm 
                      border border-white/10 hover:border-white/20"
             aria-label="View Source Code"
           >
@@ -77,7 +96,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tools, im
       </div>
     </div>
   );
-};
+});
+
+ProjectCard.displayName = 'ProjectCard';
 
 const projects = [
   {
@@ -145,22 +166,35 @@ const projects = [
   }
 ];
 
-const Projects = () => {
+const Projects = memo(() => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section className="py-12 sm:py-20 px-4 min-h-screen bg-gradient-to-b from-black via-gray-900 to-black" id="projects">
+    <section 
+      ref={ref}
+      className={`py-12 sm:py-20 px-4 min-h-screen bg-gradient-to-b from-black via-gray-900 to-black transition-all duration-500
+                ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      id="projects"
+    >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16 bg-gradient-to-r from-purple-400 via-blue-500 to-purple-400 text-transparent bg-clip-text">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16 
+                     bg-gradient-to-r from-purple-400 via-blue-500 to-purple-400 text-transparent bg-clip-text">
           Featured Projects
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
         </div>
       </div>
     </section>
   );
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;
