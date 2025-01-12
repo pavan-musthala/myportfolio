@@ -50,7 +50,7 @@ const AboutMe = () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-white">Hi, I'm Pavan Sai Musthala</h3>
               <p className="text-gray-400 leading-relaxed">
-                As a totally unassuming data analyst with a Bachelor's degree in Biotechnology from NIT Warangal, I humbly dedicate myself to the mundane task of turning raw data into groundbreaking insights. Through a series of casual internships and management training sessions, I've somehow managed to master data migration, reporting, and process improvement – no big deal.
+                As a data enthusiast with a Bachelor's degree in Biotechnology from NIT Warangal, I humbly dedicate myself to the mundane task of turning raw data into groundbreaking insights. Through a series of casual internships and management training sessions, I've somehow managed to master data migration, reporting, and process improvement – no big deal.
               </p>
               <p className="text-gray-400 leading-relaxed">
                 In my spare time, I've crafted robust data solutions, including basic little things like advanced dashboards and predictive models. Armed with Python, SQL, Power BI, and a whole toolbox of analytical skills, I'm merely looking to revolutionize data management and visualization wherever I go. And yes, I am seriously looking for good opportunities to showcase my skills and help organizations – because why let all this brilliance go to waste?
