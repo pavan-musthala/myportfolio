@@ -260,7 +260,7 @@ const Hero = () => {
               />
               <span className="relative z-10 flex items-center gap-1.5 text-sm font-medium">
                 <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                  "Lemme see what you got"
+                  "View my work"
                 </span>
                 <ChevronRight className="w-3.5 h-3.5 text-purple-300 group-hover:translate-x-0.5 transition-transform" />
               </span>
