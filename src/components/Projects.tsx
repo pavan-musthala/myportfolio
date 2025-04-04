@@ -102,6 +102,56 @@ ProjectCard.displayName = 'ProjectCard';
 
 const projects = [
   {
+    title: "Retail Analytics and Quick Commerce Optimization",
+    description: "Designed and implemented a relational database for retail operations, covering products, customers, orders, inventory, marketing, and delivery performance. Developed advanced SQL queries for business insights, including customer cohort retention, churn prediction, demand forecasting, and financial loss analysis. Built key performance indicators (KPIs) such as ROAS, customer lifetime value (CLV), delivery partner performance, and inventory stock alerts. Optimized pricing strategies and cross-selling opportunities using category-based pricing analysis.",
+    tools: ['SQL', 'Python', 'Data Analysis', 'Database Design', 'KPI Development'],
+    image: "/retail-analytics.png",
+    links: {
+      live: "",
+      github: "https://github.com/pavan-musthala/quick-commerce-analaysis"
+    }
+  },
+  {
+    title: "Hotel Revenue Analytics Dashboard",
+    description: "Developed an end-to-end Power BI dashboard to optimize hotel revenue performance, tracking 26+ industry-critical KPIs including Revenue, Occupancy %, ADR, RevPAR, Cancellation Rate, and Realisation Rate. Engineered dynamic metrics to analyze weekly performance fluctuations and platform-specific booking contributions. Identified no-show trends, cancellation drivers, and high-demand periods to refine pricing strategies and operational planning.",
+    tools: ['Power BI', 'Data Analytics', 'KPI Development', 'Business Intelligence'],
+    image: "/hotel-analytics.png",
+    links: {
+      live: "",
+      github: "https://github.com/pavan-musthala/oyo_analytics"
+    }
+  },
+  {
+    title: "AeroFit Analytics Dashboard",
+    description: "Built a customer segmentation model using Python, improving product recommendation accuracy by 25% and boosting customer satisfaction by 10%. Conducted exploratory data analysis (EDA) to uncover trends in membership engagement, leading to targeted retention strategies. Implemented interactive visualizations for better understanding of customer behavior patterns.",
+    tools: ['Python', 'Pandas', 'Scikit-learn', 'Streamlit', 'Data Analysis'],
+    image: "/aerofit.png",
+    links: {
+      live: "https://aerofit-treadmills.streamlit.app/",
+      github: "https://github.com/pavan-musthala/aerofit-analytics"
+    }
+  },
+  {
+    title: "Infrastructure Projects Monitoring Dashboard",
+    description: "Developed a comprehensive Infrastructure Project Monitoring Dashboard that provides clients with a centralized view of all their infrastructure projects. The dashboard enables efficient tracking of project status, pending amounts, and categorization based on status, state, and requirement type. Empowers stakeholders to make informed decisions, prioritize resources effectively, and streamline project management.",
+    tools: ['Power BI', 'Project Management', 'Data Visualization', 'Analytics'],
+    image: "/infrastructure.png",
+    links: {
+      live: "",
+      github: "https://github.com/pavan-musthala/infratructure-projects"
+    }
+  },
+  {
+    title: "Freedom Debt Relief Campaign Analysis",
+    description: "Conducted a comprehensive analysis of a $5 million marketing campaign for Freedom Debt Relief to evaluate its success in driving client deposits and settlements. Developed a Campaign Performance Dashboard that included monthly deposit trends, client acquisition metrics, ROI analysis, and segment performance. Applied 'What-If' analysis to model future projections and evaluate the impact of adjusting campaign timing.",
+    tools: ['Data Analysis', 'Marketing Analytics', 'ROI Analysis', 'Dashboard Development'],
+    image: "/freedom-debt.png",
+    links: {
+      live: "",
+      github: "https://github.com/pavan-musthala/freedom-debt-relief"
+    }
+  },
+  {
     title: "Fitness WebApp, (FitFreak)",
     description: "Designed and deployed a fitness-focused web application offering workout plans, nutrition tracking, diet plans, and progress monitoring. " +
       "Leveraged Cursor AI to generate the application's code, streamlining the development process. " +
