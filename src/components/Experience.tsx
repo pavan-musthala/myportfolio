@@ -4,6 +4,18 @@ import { Briefcase } from 'lucide-react';
 const Experience = () => {
   const experiences = [
     {
+      company: "PERSIST VENTURES",
+      position: "AI Frontend Developer Internship",
+      period: "Nov 2024 - Dec 2024",
+      description: [
+        "Defined and Developed an AI-Powered ESG Dashboard MVP: Translated investor requirements for identifying low-emission investment opportunities into a functional dashboard, visualizing complex global ESG data and CO₂ emissions",
+        "Led Client-Centric Feature Development: Collaborated directly with an investor client (Alviridi) to understand specific needs, tailoring dashboard features to highlight top low-emission companies by region and country, ensuring product-market fit",
+        "Enhanced User Engagement with Conversational AI: Integrated an AI chatbot to provide real-time, data-driven answers to user queries, improving data accessibility and user decision-making capabilities within the product",
+        "Implemented Core Data Management Feature: Designed and developed functionality for direct company data updates via the dashboard, improving data accuracy and enabling efficient data management for product integrity",
+        "Delivered Functional MVP: Successfully delivered a prototype leveraging AI, validating the product concept and demonstrating technical feasibility for ESG investment analysis tools",
+      ],
+    },
+    {
       company: "RAAM GROUP",
       position: "Management Trainee",
       period: "Mar 2024 - May 2024",

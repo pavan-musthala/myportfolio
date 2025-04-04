@@ -22,15 +22,15 @@ const AboutMe = () => {
           About Me
         </motion.h2>
 
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative group"
+            className="relative group h-full"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-lg opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
-            <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-800 hover:border-blue-500/50 transition-colors">
+            <div className="relative h-full overflow-hidden rounded-lg border border-gray-800 hover:border-blue-500/50 transition-colors">
               <img
                 src="/profile.jpg"
                 alt="Pavan Sai Musthala"
@@ -45,15 +45,15 @@ const AboutMe = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6 p-6 rounded-xl backdrop-blur-sm bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-colors"
+            className="space-y-6 p-6 rounded-xl backdrop-blur-sm bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-colors h-full flex flex-col"
           >
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-white">Hi, I'm Pavan Sai Musthala</h3>
               <p className="text-gray-400 leading-relaxed">
-                As a totally unassuming data analyst with a Bachelor's degree in Biotechnology from NIT Warangal, I humbly dedicate myself to the mundane task of turning raw data into groundbreaking insights. Through a series of casual internships and management training sessions, I've somehow managed to master data migration, reporting, and process improvement – no big deal.
+                As an NIT Warangal B.Tech graduate, I leverage a robust analytical foundation in SQL, Python, and Power BI to effectively bridge the gap between raw data and impactful business strategy. My hands-on experience encompasses the end-to-end development of insightful dashboards designed for specific user needs – from optimizing hotel revenue by tracking critical KPIs and visualizing utilization trends, to enabling ESG investment analysis through AI-powered tools, and facilitating sports data exploration for analysts via interactive platforms.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                In my spare time, I've crafted robust data solutions, including basic little things like advanced dashboards and predictive models. Armed with Python, SQL, Power BI, and a whole toolbox of analytical skills, I'm merely looking to revolutionize data management and visualization wherever I go. And yes, I am seriously looking for good opportunities to showcase my skills and help organizations – because why let all this brilliance go to waste?
+                I thrive on translating intricate technical findings into clear, understandable insights for diverse stakeholders, including investor clients, ensuring alignment and facilitating data-driven decision-making. Having contributed to projects involving detailed requirements gathering, MVP development, and ensuring data integrity for critical reporting, I am deeply passionate about understanding and addressing user needs. I am now actively seeking an entry-level Product Management role where I can apply my analytical rigor, problem-solving capabilities, and collaborative spirit to contribute meaningfully to building successful, user-centric products.
               </p>
             </div>
 
